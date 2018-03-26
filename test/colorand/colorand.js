@@ -75,7 +75,7 @@ function setup() {
   background(0);
 }
 
-function windowResized() {]
+function windowResized() {
   resizeCanvas(windowWidth, windowHeight);
 }
 
