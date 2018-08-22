@@ -81,13 +81,13 @@ function draw() {
     bola.update();
     fill(bola.color);
     textAlign(LEFT);
-    text(bola.name+":"+angles[bola.name] ,0,(i+1)*45);
-    text(bola.name+"(sem ajuste):"+angles['t_'+bola.name] ,0,(i+1)*45+15);
+    text(bola.name+":"+int(angles[bola.name]) ,0,(i+1)*45);
+    text(bola.name+"(sem ajuste):"+int(angles['t_'+bola.name]) ,0,(i+1)*45+15);
   });
 }
 
 window.addEventListener("deviceorientation",function(evt){
   if(evt.alpha) angles.alpha = (angles.t_alpha = evt.alpha);
   if(evt.beta) angles.beta = (angles.t_beta = evt.beta)+180;
-  if(evt.gamma) angles.gamma = (angles.t_beta = evt.gamma)*2+180;
+  if(evt.gamma) angles.gamma = (angles.t_gamma = evt.gamma)*2+180;
 });
