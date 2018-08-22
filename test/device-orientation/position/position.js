@@ -1,20 +1,19 @@
-let grav = 0.25,
-    angles = {
+let angles = {
       alpha: 0,
       beta: 0,
       gamma: 0
-    };
+};
 
 class Bola {
-  constructor(x,y) {
+  constructor(x,y,tamanho,retorno,aceleracao) {
     this.x = x;
     this.y = y;
     this.xspeed=
     this.yspeed = 0;
 
-    this.tam = 50;
-
-    this.retorno = 0.25;
+    this.tam = tamanho;
+    this.retorno = retorno;
+    this.aceleracao = aceleracao;
     Object.defineProperty(this,'tamh',{
       get(){return this.tam/2}
     });
@@ -25,8 +24,8 @@ class Bola {
     stroke(255,255,255);
     ellipse(this.x,this.y,this.tam,this.tam);
 
-    this.xac=map(angles.gamma,-45,45,-3,3);
-    this.yac=map(angles.beta,-45,45,-3,3);
+    this.xac=map(angles.gamma,-45,45,-this.aceleracao,this.aceleracao);
+    this.yac=map(angles.beta,-45,45,-this.aceleracao,this.aceleracao);
 
     this.xspeed+=this.xac;
     this.yspeed+=this.yac;
@@ -59,7 +58,12 @@ let bolas = [];
 
 function setup() {
   createCanvas(windowWidth,windowHeight);
-  bolas.push(new Bola(width/2,height/2));
+  let params = getURLParams(),
+      retorno = (params.r)? float(params.r) : 0.25,
+      tamanho = (params.t)? float(params.t) : 50,
+      aceleracao = (params.a)? float(params.a) : 0.5;
+
+  bolas.push(new Bola(width/2,height/2,tamanho,retorno,aceleracao));
 }
 
 function windowResized() {
