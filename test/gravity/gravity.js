@@ -10,7 +10,9 @@ class Bola {
     this.xac=0;
     this.yac=grav;
 
-    this.tam = 10;
+    this.retorno = 0.9;
+
+    this.tam = 50;
     Object.defineProperty(this,'tamh',{
       get(){return this.tam/2}
     });
@@ -31,20 +33,20 @@ class Bola {
     this.y+=this.yspeed;
 
     if(this.x>width-this.tamh){
-      this.xspeed*=-0.9;
+      this.xspeed*=-this.retorno;
       this.x=width-this.tamh;
     }
     else if(this.x<=this.tamh){
-      this.xspeed*=-0.9;
+      this.xspeed*=-this.retorno;
       this.x=this.tamh;
     }
 
     if(this.y>height-this.tamh){
-      this.yspeed*=-0.9;
+      this.yspeed*=-this.retorno;
       this.y=height-this.tamh;
     }
     else if(this.y<=this.tamh){
-      this.yspeed*=-0.9;
+      this.yspeed*=-this.retorno;
       this.y=this.tamh;
     }
   }
@@ -53,8 +55,12 @@ class Bola {
 let bolas = [];
 
 function setup() {
-  createCanvas(500,500);
+  createCanvas(windowWidth,windowHeight);
   bolas.push(new Bola(width/2,height/2));
+}
+
+function windowResized() {
+  resizeCanvas(windowWidth, windowHeight);
 }
 
 function draw() {
