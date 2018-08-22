@@ -9,8 +9,12 @@ class Bola {
   constructor(x,y) {
     this.x = x;
     this.y = y;
+    this.xspeed=
+    this.yspeed = 0;
 
     this.tam = 50;
+
+    this.retorno = 0.25;
     Object.defineProperty(this,'tamh',{
       get(){return this.tam/2}
     });
@@ -21,15 +25,33 @@ class Bola {
     stroke(255,255,255);
     ellipse(this.x,this.y,this.tam,this.tam);
 
-    this.x=map(angles.gamma,-45,45,0,width);
-    this.y=map(angles.beta,-45,45,0,height);
+    this.xac=map(angles.gamma,-45,45,-3,3);
+    this.yac=map(angles.beta,-45,45,-3,3);
 
-    if(this.x>width-this.tamh)this.x=width-this.tamh;
-    else if(this.x<=this.tamh)this.x=this.tamh;
+    this.xspeed+=this.xac;
+    this.yspeed+=this.yac;
 
-    if(this.y>height-this.tamh)this.y=height-this.tamh;
-    else if(this.y<=this.tamh)this.y=this.tamh;
+    this.x+=this.xspeed;
+    this.y+=this.yspeed;
 
+    if(this.x>width-this.tamh){
+      this.xspeed*=-this.retorno;
+      this.x=width-this.tamh;
+    }
+    else if(this.x<=this.tamh){
+      this.xspeed*=-this.retorno;
+      this.x=this.tamh;
+    }
+
+    if(this.y>height-this.tamh){
+      this.yspeed*=-this.retorno;
+      this.yac = 0;
+      this.y=height-this.tamh;
+    }
+    else if(this.y<=this.tamh){
+      this.yspeed*=-this.retorno;
+      this.y=this.tamh;
+    }
   }
 }
 
