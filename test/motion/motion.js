@@ -4,7 +4,10 @@ let grav = 10,
 let angles={
   alpha: 0,
   beta: 90,
-  gamma: 180
+  gamma: 180,
+  t_alpha:0,
+  t_beta:0,
+  t_gamma:0
 };
 
 class Bola {
@@ -62,9 +65,9 @@ let bolas = [];
 
 function setup() {
   createCanvas(windowWidth,windowHeight);
-  bolas.push(new Bola(width/2,height/2,[255,0,0],'alpha'));
-  bolas.push(new Bola(width/2,height/2,[0,255,0],'beta'));
-  bolas.push(new Bola(width/2,height/2,[0,0,255],'gamma'));
+  bolas.push(new Bola(width/2,height/2,[255,0,255],'alpha'));
+  bolas.push(new Bola(width/2,height/2,[255,255,0],'beta'));
+  bolas.push(new Bola(width/2,height/2,[0,255,255],'gamma'));
 }
 
 function windowResized() {
@@ -74,11 +77,17 @@ function windowResized() {
 function draw() {
   background(0);
   angleMode(DEGREES);
-  bolas.forEach(bola=>bola.update());
+  bolas.forEach((bola,i)=>{
+    bola.update();
+    fill(bola.color);
+    textAlign(LEFT);
+    text(bola.name+":"+angles[bola.name] ,0,(i+1)*45);
+    text(bola.name+"(sem ajuste):"+angles['t_'+bola.name] ,0,(i+1)*45+15);
+  });
 }
 
 window.addEventListener("deviceorientation",function(evt){
-  if(evt.alpha) angles.alpha = evt.alpha;
-  if(evt.beta) angles.beta = evt.beta+180;
-  if(evt.gamma) angles.gamma = evt.gamma*2+180;
+  if(evt.alpha) angles.alpha = (angles.t_alpha = evt.alpha);
+  if(evt.beta) angles.beta = (angles.t_beta = evt.beta)+180;
+  if(evt.gamma) angles.gamma = (angles.t_beta = evt.gamma)*2+180;
 });
