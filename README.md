@@ -16,3 +16,9 @@ Esse repositório foi feito com o intuito de praticar minhas habilidades na bibl
 * [Falling Balls](https://eumsmo.github.io/p5/test/fall/): Nome autoexplicativo.
 
 * [Falling Balls (background update)](https://eumsmo.github.io/p5/test/fall/?background): Nome autoexplicativo, com rastros na tela.
+
+* [Gravity](https://eumsmo.github.io/p5/test/device-orientation/gravity/): Bola com aceleração similar a gravidade, afetada pela orientação do dispositivo
+
+* [Motion](https://eumsmo.github.io/p5/test/device-orientation/motion/): Uma representação dos valores fornecidos pela API de orientação do dispositivo
+
+* [Position](https://eumsmo.github.io/p5/test/device-orientation/position/): Uma bola que é afetada pela inclinação do dispositivo
