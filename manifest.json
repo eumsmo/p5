@@ -1,0 +1,13 @@
+{
+	"short_name": "P5 Tests",
+	"name": "Testes com P5",
+	"icons": [
+	 {
+    	"src": "p5.png",
+    	"type": "image/png",
+    	"sizes": "766x765"
+  	}],
+  	"start_url": "README.md",
+  	"background_color": "white",
+  	"display": "standalone"
+}
